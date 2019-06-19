@@ -1,0 +1,80 @@
+<html>
+  <head>
+    <title>NesWheatley</title>
+    <style>
+      body {font-family: Helvetica, Arial, Sans-Serif}
+    </style>
+  </head>
+  <body>
+  <script>
+    var connection = null;
+	function startWS(){
+	connection = new WebSocket('ws://' + location.hostname + ':81/', ['arduino']);
+		connection.onopen = function () {
+		  connection.send('Connect ' + new Date());
+		};
+		connection.onerror = function (error) {
+		  console.log('WebSocket Error ', error);
+		};
+		connection.onmessage = function (e) {
+		  console.log('Server: ', e.data);
+		};
+		connection.onclose = function () {
+		  console.log('WebSocket connection closed');
+		};
+	}
+
+	function sendServo(id){
+		if(id == null)
+			return;
+		var angle = document.getElementById("servo_"+id).value;
+		document.getElementById("servo_"+id+"_val").innerHTML = ""+angle;
+		var msg = "setServo "+id+" "+angle;
+		connection.send(msg);
+		console.log(msg);
+	}
+	function sendAnimation(){
+		var msg = document.getElementById("animationInput").value;
+		connection.send(msg);
+		console.log(msg);
+	}
+	function stopAnimation(){
+		var msg = "stop";
+		connection.send(msg);
+		console.log(msg);
+	}
+	startWS();
+  </script>
+    <h1>Wheatley</h1>
+    <form action='/submit' method='POST'>
+		<label for='servo_0'><!--Eye up-down-->Rope climber:</label> <span id='servo_0_val'>90</span>
+			<input type='range' id='servo_0' name='servo_0' min='0' max='255' step="1" value="90" onchange='sendServo(0);'>
+		<br>
+		<label for='servo_1'>Body lefy-right:</label> <span id='servo_1_val'>90</span>
+			<input type='range' id='servo_1' name='servo_1' min='0' max='255' step="1" value="90" onchange='sendServo(1);'>
+		<br>
+		<label for='servo_2'>Eye close-open:</label> <span id='servo_2_val'>90</span>
+			<input type='range' id='servo_2' name='servo_2' min='80' max='100' step="1" value="90" onchange='sendServo(2);'>
+		<br>
+		<label for='servo_3'>Eye left-right:</label> <span id='servo_3_val'>90</span>
+			<input type='range' id='servo_3' name='servo_3' min='60' max='90' step="1" value="76" onchange='sendServo(3);'>
+		<br>
+		<label for='servo_4'>Body up-down:</label> <span id='servo_4_val'>90</span>
+			<input type='range' id='servo_4' name='servo_4' min='82' max='130' step="1" value="95" onchange='sendServo(4);'>
+		<br>
+		<label for='servo_5'>Eye on-off:</label> <span id='servo_5_val'>1</span>
+			<input type='range' id='servo_5' name='servo_5' min='0' max='1' step="1" value="1" onchange='sendServo(5);'>
+		<br>
+	</form>
+	<textarea id="animationInput" style="width:800px;height:400px">
+{
+  "animation": [
+	{"servoId":2,"origin":80, "target":100, "startTime":0, "endTime":2000},
+	{"servoId":2,"origin":100, "target":80, "startTime":2000, "endTime":4000}
+  ]
+}	
+	</textarea>
+	<button id="annimationPlay" onClick="sendAnimation();">Play</button>
+	<button id="annimationPlay" onClick="stopAnimation();">Stop</button>
+  </body>
+</html>

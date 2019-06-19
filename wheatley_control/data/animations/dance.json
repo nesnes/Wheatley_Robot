@@ -1,0 +1,37 @@
+{
+        "frequency": 20,
+        "loop":1,
+        "animation": [
+        {"servoId":0, "origin":90, "target":90, "startTime":0, "endTime":0},
+        {"servoId":1, "origin":90, "target":90, "startTime":0, "endTime":0},
+
+        {"servoId":3, "origin":76, "target":76, "startTime":0, "endTime":0},
+        {"servoId":4, "origin":100, "target":100, "startTime":0, "endTime":0},
+        
+        {"servoId":5, "origin":1, "target":1, "startTime":0, "endTime":0},
+        {"servoId":5, "origin":0, "target":0, "startTime":900, "endTime":900},
+        {"servoId":5, "origin":1, "target":1, "startTime":1000, "endTime":1000},
+        {"servoId":5, "origin":0, "target":0, "startTime":3500, "endTime":3500},
+        {"servoId":5, "origin":1, "target":1, "startTime":3600, "endTime":3600},
+        {"servoId":5, "origin":0, "target":0, "startTime":4750, "endTime":4750},
+        {"servoId":5, "origin":1, "target":1, "startTime":4850, "endTime":4850},
+        
+        {"servoId":2, "origin":85, "target":85, "startTime":0, "endTime":0},
+        {"servoId":2, "origin":95, "target":95, "startTime":1000, "endTime":1000},
+        {"servoId":2, "origin":80, "target":80, "startTime":2750, "endTime":2750},
+        {"servoId":2, "origin":87, "target":87, "startTime":4500, "endTime":4500},
+        
+        
+        {"servoId":3, "origin":76, "target":60, "startTime":250, "endTime":500},
+        {"servoId":3, "origin":76, "target":90, "startTime":2000, "endTime":2500},
+        {"servoId":3, "origin":90, "target":76, "startTime":3750, "endTime":4500},
+        
+        {"servoId":4, "origin":100, "target":75, "startTime":250, "endTime":500},
+        {"servoId":4, "origin":75, "target":75, "startTime":2000, "endTime":2500},
+        {"servoId":4, "origin":75, "target":100, "startTime":3000, "endTime":4500},
+        
+        {"servoId":1, "origin":90, "target":120, "startTime":0, "endTime":500},
+        {"servoId":1, "origin":120, "target":70, "startTime":2000, "endTime":2500},
+        {"servoId":1, "origin":70, "target":90, "startTime":3750, "endTime":4500}
+        ]
+}
